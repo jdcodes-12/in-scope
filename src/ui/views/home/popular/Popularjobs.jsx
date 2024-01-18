@@ -14,6 +14,9 @@ import {
 } from 'react-native';
 
 export default function Popularjobs() {
+  const router = useRouter(); 
+
+  const [selectedJob, setSelectJob] = useState();
 
   const fetchQuery = {
     query: '.NET Developer',
@@ -23,7 +26,10 @@ export default function Popularjobs() {
   const isLoading = false;
   const error = false;
   // const { isLoading, error, data } = useFetch('search', fetchQuery);
-  // console.log(data);
+
+  function onPress(item) {
+    
+  }
 
   return (
     <View style={styles.container}>
@@ -47,7 +53,8 @@ export default function Popularjobs() {
               renderItem={({ item }) =>
                 <PopularJobCard 
                   item={item}
-                  onPress={() => console.log('Pressed card!')}
+                  selectedJob={selectedJob}
+                  onPress={onPress}
                 />  
               }
             />)
