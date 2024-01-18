@@ -3,6 +3,8 @@ import { useRouter } from 'expo-router';
 import { COLORS, SIZES } from '../../../constants/theme';
 import PopularJobCard from '../../../components/cards/popular/PopularJobCard';
 import styles from './popularjobs.style';
+import useFetch from '../../../../lib/hooks/use-fetch.hook';
+import { JOB_DATA_FAKE } from '../../../../assets/mock-data/pop-jobs-data.mock';
 import { 
   View, 
   Text,
@@ -13,8 +15,15 @@ import {
 
 export default function Popularjobs() {
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const fetchQuery = {
+    query: '.NET Developer',
+    num_pages: 1
+  }
+
+  const isLoading = false;
+  const error = false;
+  // const { isLoading, error, data } = useFetch('search', fetchQuery);
+  // console.log(data);
 
   return (
     <View style={styles.container}>
@@ -28,15 +37,18 @@ export default function Popularjobs() {
       <View style={styles.cardsContainer}>
         {isLoading ?
           (<ActivityIndicator size='large' colors={COLORS.primary} />) : 
-          (error ? 
+          (error ?
             (<Text>Something went wrong...</Text>) :
             (<FlatList 
               horizontal
-              data={[1, 2, 3, 4, 5, 6, 7, 8]}
+              data={JOB_DATA_FAKE}
               keyExtractor={item => item?.job_id}
               contentContainerStyle={{ columnGap: SIZES.medium }}
               renderItem={({ item }) =>
-                <PopularJobCard item={item} />  
+                <PopularJobCard 
+                  item={item}
+                  onPress={() => console.log('Pressed card!')}
+                />  
               }
             />)
           )

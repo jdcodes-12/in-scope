@@ -1,8 +1,7 @@
 import { StyleSheet } from "react-native";
-
 import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants/theme";
 
-const styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   container: (selectedJob, item) => ({
     width: 250,
     padding: SIZES.xLarge,
@@ -55,5 +54,3 @@ const styles = StyleSheet.create({
     color: "#B3AEC6",
   },
 });
-
-export default styles;

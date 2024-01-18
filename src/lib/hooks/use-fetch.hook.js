@@ -1,6 +1,6 @@
+import { RAPID_API_KEY, BASE_URL } from '@env';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { RAPID_API_KEY } from '@env';
 
 const apiKey = RAPID_API_KEY;
 
@@ -15,14 +15,14 @@ const apiKey = RAPID_API_KEY;
 *  (i.e. isLoading, error), the data itself, and a refetch
 *  method.
 */
-function useFetch(endpoint, query) {
+export default function useFetch(endpoint, query) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchOptions = {
     method: 'GET',
-    url: `https://jsearch.p.rapidapi.com/${endpoint}`,
+    url: `${BASE_URL}/${endpoint}`,
     params: { ...query }, // Make query dynamic
     headers: {
       'X-RapidAPI-Key': apiKey, // get API key for JSearch API
@@ -33,7 +33,7 @@ function useFetch(endpoint, query) {
 
   // The function to fire off when attempting
   // to fetch data. This will fire in useEffect.
-  const fetchData = async () => {
+  async function fetchData() {
     setIsLoading(true);
     
     try {
@@ -51,16 +51,17 @@ function useFetch(endpoint, query) {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-  },[])
-
   // Utility method to trigger 
   // refetches if needed.
-  const refetch = () => {
+  function refetch() {
     setIsLoading(true);
     fetchData();
   }
+
+  // Trigger the fetch data effect.
+  useEffect(() => {
+    fetchData();
+  },[])
 
   return { data, isLoading, error, refetch }
 }
