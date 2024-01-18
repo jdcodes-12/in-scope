@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants/theme";
 
 const styles = StyleSheet.create({
   container: (selectedJob, item) => ({
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     width: "70%",
     height: "70%",
   },
-  companyName: {
+  companyName: { 
     fontSize: SIZES.medium,
     fontFamily: FONT.regular,
     color: "#B3AEC6",

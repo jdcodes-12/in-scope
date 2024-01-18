@@ -1,4 +1,4 @@
-const COLORS = {
+export const COLORS = {
   primary: "#312651",
   secondary: "#444262",
   tertiary: "#FF7754",
@@ -10,13 +10,13 @@ const COLORS = {
   lightWhite: "#FAFAFC",
 };
 
-const FONT = {
+export const FONT = {
   regular: "DMRegular",
   medium: "DMMedium",
   bold: "DMBold",
 };
 
-const SIZES = {
+export const SIZES = {
   xSmall: 10,
   small: 12,
   medium: 16,
@@ -25,7 +25,7 @@ const SIZES = {
   xxLarge: 32,
 };
 
-const SHADOWS = {
+export const SHADOWS = {
   small: {
     shadowColor: "#000",
     shadowOffset: {
@@ -47,5 +47,3 @@ const SHADOWS = {
     elevation: 5,
   },
 };
-
-export { COLORS, FONT, SIZES, SHADOWS };
