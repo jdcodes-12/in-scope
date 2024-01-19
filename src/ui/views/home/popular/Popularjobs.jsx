@@ -16,7 +16,7 @@ import {
 export default function Popularjobs() {
   const router = useRouter(); 
 
-  const [selectedJob, setSelectJob] = useState();
+  const [selectedJob, setSelectedJob] = useState();
 
   const fetchQuery = {
     query: '.NET Developer',
@@ -28,7 +28,8 @@ export default function Popularjobs() {
   // const { isLoading, error, data } = useFetch('search', fetchQuery);
 
   function onPress(item) {
-    
+    router.push(`/job-details/${item.job_id}`);
+    setSelectedJob(item.job_id);
   }
 
   return (

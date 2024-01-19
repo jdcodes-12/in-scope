@@ -32,7 +32,7 @@ export default function Home() {
             <Welcome 
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
-              handleClick={() => {
+              onTap={() => {
                 if (searchTerm)
                   router.push(`/search/${searchTerm}`);
               }}

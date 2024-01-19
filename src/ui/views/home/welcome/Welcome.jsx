@@ -14,17 +14,26 @@ import {
 
 const jobTypes = ['Full-time', 'Part-time', 'Contractor'];
 
-export default function Welcome() {
+export default function Welcome({
+  searchTerm,
+  setSearchTerm,
+  onTap
+}) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('Full-time');
 
   return (
     <View>
       <ViewHeader />
-      <SearchBar />
+      <SearchBar 
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        handlePress={onTap}
+      />
       <JobTabs 
         activeTab={activeTab} 
         setActiveTab={setActiveTab}
+        router={router}
       />
     </View>
   );
@@ -39,20 +48,22 @@ function ViewHeader() {
   );
 }
 
-function SearchBar() {
+function SearchBar({ 
+  searchTerm, setSearchTerm, handlePress
+}) {
   return (
     <View style={styles.searchContainer}>
       <View style={styles.searchWrapper}>
         <TextInput 
           style={styles.searchInput}
-          value=''
-          onChange={() => {}}
+          value={searchTerm}
+          onChangeText={(text) => setSearchTerm(text)}
           placeholder='What job are you looking for?'
         />
       </View>
       <TouchableOpacity
         style={styles.searchBtn}
-        onPress={() => {}}
+        onPress={() => handlePress}
       >
         <Image 
           source={icons.search}
@@ -64,7 +75,7 @@ function SearchBar() {
   );
 }
 
-function JobTabs({ activeTab, setActiveTab }) {
+function JobTabs({ activeTab, setActiveTab, router }) {
   return (
     <View style={styles.tabsContainer}>
       <FlatList
