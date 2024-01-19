@@ -17,10 +17,10 @@ import {
 } from 'react-native';
 import { JOB_DATA_FAKE } from '../../assets/mock-data/pop-jobs-data.mock';
 
-
 const tabs = ['About', 'Qualifications', 'Responsibilities'];
 
 export default function JobDetailsView() {
+
   const searchParams = useGlobalSearchParams();
   const router = useRouter();
 
@@ -79,22 +79,61 @@ export default function JobDetailsView() {
             error ? (<Text>Something went wrong fetching data.</Text>)  :
               data === 0 ? 
                 (<Text>No data to show.</Text>) :
-                (<ViewContent data={data} />)
+                ( 
+                  <ViewContent 
+                    data={data} 
+                    activeTab={activeTab}
+                    setActiveTab={setActiveTab}
+                  />
+                )
           }
         </ScrollView>
+        <Footer />
       </>
     </SafeAreaView>
   );
 }
 
-function ViewContent({ data }) {
-
+function ViewContent({ data, activeTab, setActiveTab }) {
+  
   const { 
     job_title, 
     job_country,
     employer_logo, 
     employer_name 
   } = data;
+
+  function displayTabContent() {
+    switch(activeTab) {
+      case 'About':
+        return (
+          <About 
+            info={data.job_description ?? 'No description available.'}
+          />
+        );
+
+      case 'Qualifications':
+        return (
+          <Specifics 
+            title='Qualifications'
+            points={data.job_highlights?.Qualifications ?? ['N/A']}
+          />
+        );
+
+      case 'Responsibilities': 
+        return (
+          <Specifics 
+            title='Responsibilities'
+            points={data.job_highlights?.Responsibilities ?? ['N/A']}
+          />
+        );
+
+      default: {
+        console.log('> Failed to render a tab on JobDetailsView');
+        break;
+      }
+    }
+  }
 
   return (
     <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
@@ -106,8 +145,12 @@ function ViewContent({ data }) {
       />
 
       <Tabs
+        tabs={tabs}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
 
-      />  
+      {displayTabContent()}
     </View>
   )
 }

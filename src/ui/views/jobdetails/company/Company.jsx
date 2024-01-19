@@ -42,7 +42,7 @@ export default function Company({
         <View>
           <Image 
             source={icons.location}
-            resizeMode='container'
+            resizeMode='contain'
             style={styles.locationImage}
           />
           <Text style={styles.locationName}>
