@@ -32,10 +32,6 @@ export default function Home() {
             <NearbyJobs />
           </View>
         </ScrollView>
-      {/* <NavigationBar>
-           
-      
-      </NavigationBar> */}
     </SafeAreaView>
   );
 }

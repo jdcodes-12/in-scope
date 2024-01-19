@@ -27,7 +27,7 @@ export default function NearbyJobs() {
   // console.log(data);
 
   function onNavigate(jobId) {
-    return router.push(`/job-details/${jobId}`);
+    return ;
   }
   
   return (
@@ -48,7 +48,7 @@ export default function NearbyJobs() {
               <NearbyJobCard
                 key={`nearby-job-${job?.job_id}`}
                 job={job}
-                onNavigate={onNavigate}
+                onNavigate={() => router.push(`/job_details/${job.job_id ?? '#'}`)}
               />
             ))
           )
@@ -57,3 +57,5 @@ export default function NearbyJobs() {
     </View>
   );
 }
+
+// const fallbackLogo = 'https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqz05H.jpg';

@@ -1,14 +1,10 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { 
+  Text
+} from 'react-native';
 
-import styles from './tabs.style'
-
-const Tabs = () => {
+export default function Tabs() {
   return (
-    <View>
-      <Text>Tabs</Text>
-    </View>
+    <Text>Tabs</Text>
   )
 }
-
-export default Tabs
